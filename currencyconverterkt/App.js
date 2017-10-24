@@ -1,6 +1,9 @@
 import React from 'react';
 import {Text, View } from 'react-native';
 
+//importing the GenericCurrencyField custom component
+import GenericCurrencyField from './src/components/GenericCurrencyField';
+
 export default class App extends React.Component {
   render() {
     return (
@@ -11,6 +14,14 @@ export default class App extends React.Component {
         {/* this view represents the headerArea */}
         <View style={viewStyles.headerArea}>
           <Text style={textStyles.header}>CURRENCY CONVERTER</Text>
+        </View>
+
+        <View style={viewStyles.currencyBlockBackground}>
+          <GenericCurrencyField />
+        </View>
+
+        <View style={viewStyles.keypad}>
+
         </View>
 
       </View>
@@ -35,6 +46,19 @@ const viewStyles = {
     height: '10%',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  /* This view will be the background to the GenericCurrencyFields and the currency exchange detail*/
+  currencyBlockBackground: {
+    backgroundColor: '#252525',
+    width: '100%',
+    height: '30%'
+  },
+  keypad: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: 30,
+    width: '100%',
+    height: '60%'
   }
 };
 
