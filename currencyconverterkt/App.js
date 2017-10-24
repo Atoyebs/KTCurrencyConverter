@@ -1,21 +1,46 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {Text, View } from 'react-native';
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+
+      /*This is the topmost (parent container) everything is inside this container*/
+      <View style={viewStyles.container}>
+
+        {/* this view represents the headerArea */}
+        <View style={viewStyles.headerArea}>
+          <Text style={textStyles.header}>CURRENCY CONVERTER</Text>
+        </View>
+
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
+const viewStyles = {
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
+    paddingTop: 15
   },
-});
+  /* the style for the headerArea of the app
+     the headerArea will house the title of the app
+  */
+  headerArea: {
+    width: '100%',
+    height: '10%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+};
+
+const textStyles = {
+  header: {
+    fontSize: 19,
+    fontWeight: '500'
+  }
+};
