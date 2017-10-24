@@ -17,15 +17,27 @@ export default class App extends React.Component {
         </View>
 
         <View style={viewStyles.currencyBlockBackground}>
+
           <GenericCurrencyField
             currencyDescription={'NGN'}
             iconFlag={require('./src/images/nig_flag.png')}
             displayAmountNumber={0}
           />
+
+          <GenericCurrencyField
+            currencyDescription={'GBP'}
+            iconFlag={require('./src/images/uk_flag.png')}
+            displayAmountNumber={0}
+          />
+
+          <View style={viewStyles.exchangeRateDetail}>
+            <Text style={textStyles.currencyDescription}>1 NGN = 0.0021 GBP</Text>
+            <Text style={textStyles.currencyDescription}>1 GBP = 465.8221 NGN</Text>
+          </View>
+
         </View>
 
         <View style={viewStyles.keypad}>
-
         </View>
 
       </View>
@@ -55,7 +67,7 @@ const viewStyles = {
   currencyBlockBackground: {
     backgroundColor: '#252525',
     width: '100%',
-    height: '30%'
+    height: '35%'
   },
   keypad: {
     flexDirection: 'row',
@@ -63,6 +75,11 @@ const viewStyles = {
     padding: 30,
     width: '100%',
     height: '60%'
+  },
+  exchangeRateDetail: {
+    flex: 1.5,
+    alignItems: 'center',
+    paddingTop: 2
   }
 };
 
@@ -70,5 +87,9 @@ const textStyles = {
   header: {
     fontSize: 19,
     fontWeight: '500'
+  },
+  currencyDescription: {
+    color:'white',
+    margin: 5
   }
 };

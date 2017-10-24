@@ -45,8 +45,9 @@ const viewStyles = {
 
   container: {
     width: '100%', //we know the field will take up the entire width of the screen
-    height: 80,
-    flexDirection: 'row'
+    flex: 2,
+    flexDirection: 'row',
+    marginBottom: 3
   },
   amountFieldArea: {
     backgroundColor: '#414141',
