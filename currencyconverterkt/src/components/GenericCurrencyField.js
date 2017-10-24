@@ -20,6 +20,17 @@ class GenericCurrencyField extends Component {
     return (
 
       <View style={viewStyles.container}>
+
+        <View style={viewStyles.amountFieldArea}>
+          <View />
+          {/*Space around will come into effect here and push the display amount to the far right of the field*/}
+          <Text style={textStyles.displayAmountNumber}>0</Text>
+        </View>
+
+        <View style={viewStyles.currencyDescriptionField}>
+          <Text style={textStyles.currencyDescriptionText}>{this.props.currencyDescription}</Text>
+        </View>
+
       </View>
 
     );
@@ -33,13 +44,41 @@ class GenericCurrencyField extends Component {
 const viewStyles = {
 
   container: {
-    backgroundColor: 'lightblue',
     width: '100%', //we know the field will take up the entire width of the screen
+    height: 80,
+    flexDirection: 'row'
+  },
+  amountFieldArea: {
+    backgroundColor: '#414141',
+    /* we are doing this because everything within the amountFieldArea is
+       going to be laid out on the horizontal axis
+    */
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flex: 7.5,
+    //we include paddingHorizontal because we don't want anything touching the left or right edges of the field area
+    paddingHorizontal: 10
+  },
+  currencyDescriptionField: {
+    backgroundColor: '#D8D8D8',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 2.5
   }
 
 }
 
-
+const textStyles = {
+  currencyDescriptionText: {
+    fontSize: 18,
+    fontWeight: '500'
+  },
+  displayAmountNumber: {
+    color: 'white',
+    fontSize: 27
+  }
+};
 
 /* this line of code allows this class/file to be
    accessible in other parts of the app (in other files/classes)
