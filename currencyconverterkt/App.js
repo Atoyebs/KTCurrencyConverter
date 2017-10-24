@@ -17,7 +17,11 @@ export default class App extends React.Component {
         </View>
 
         <View style={viewStyles.currencyBlockBackground}>
-          <GenericCurrencyField currencyDescription={'NGN'}/>
+          <GenericCurrencyField
+            currencyDescription={'NGN'}
+            iconFlag={require('./src/images/nig_flag.png')}
+            displayAmountNumber={0}
+          />
         </View>
 
         <View style={viewStyles.keypad}>

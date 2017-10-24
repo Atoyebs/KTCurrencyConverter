@@ -22,9 +22,9 @@ class GenericCurrencyField extends Component {
       <View style={viewStyles.container}>
 
         <View style={viewStyles.amountFieldArea}>
-          <Image source={require('../images/nig_flag.png')} resizeMode={'cover'} style={viewStyles.flagIcon} />
+          <Image source={this.props.iconFlag} resizeMode={'cover'} style={viewStyles.flagIcon} />
           {/*Space around will come into effect here and push the display amount to the far right of the field*/}
-          <Text style={textStyles.displayAmountNumber}>0</Text>
+          <Text style={textStyles.displayAmountNumber}>{this.props.displayAmountNumber}</Text>
         </View>
 
         <View style={viewStyles.currencyDescriptionField}>
