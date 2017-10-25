@@ -7,8 +7,8 @@ const buttonBackgroundColor = {
 };
 
 const buttonDimensions = {
-  height: 60,
-  width: 60
+  height: 65,
+  width: 65
 };
 
 class RoundButton extends Component {

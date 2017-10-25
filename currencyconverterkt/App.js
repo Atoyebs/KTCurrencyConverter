@@ -5,6 +5,8 @@ import {Text, View } from 'react-native';
 import GenericCurrencyField from './src/components/GenericCurrencyField';
 import RoundButton from './src/components/RoundButton';
 
+const buttonMargin = {horizontal: 65, vertical: 30};
+
 export default class App extends React.Component {
 
 
@@ -24,7 +26,7 @@ export default class App extends React.Component {
                       was the button pressed.
   */
   buttonPressed = (text, isDeleteButton) => {
-    console.log("The button pressed was = " + text);
+    console.log("The button pressed was = " + text + "       & isDeleteButton = " + isDeleteButton);
   }
 
 
@@ -64,14 +66,37 @@ export default class App extends React.Component {
 
           {
             this.buttonArray.map((data, index) => {
-              return (
-                <RoundButton
-                  key={index}
-                  number={data}
-                  isDeleteButton={false}
-                  buttonPressed={(text, isDeleteButton) => this.buttonPressed(text, isDeleteButton)}
-                />
-              );
+                if (data == "DEL") {
+                  return (
+                    <RoundButton
+                      key={index}
+                      number={data}
+                      isDeleteButton={true}
+                      buttonPressed={(text, isDeleteButton) => this.buttonPressed(text, isDeleteButton)}
+                      marginStyling={{ marginBottom: buttonMargin.vertical}}
+                    />
+                  );
+                }
+                else if((index + 1) % 3 == 0){
+                  return(
+                    <RoundButton
+                      key={index}
+                      number={data}
+                      buttonPressed={(text, isDeleteButton) => this.buttonPressed(text, isDeleteButton)}
+                      marginStyling={{ marginBottom: buttonMargin.vertical}}
+                    />
+                  );
+                }
+                else {
+                  return (
+                    <RoundButton
+                      key={index}
+                      number={data}
+                      buttonPressed={(text, isDeleteButton) => this.buttonPressed(text, isDeleteButton)}
+                      marginStyling={{ marginRight: buttonMargin.horizontal, marginBottom: buttonMargin.vertical}}
+                    />
+                  );
+                }
             })
           }
 
@@ -106,7 +131,7 @@ const viewStyles = {
   currencyBlockBackground: {
     backgroundColor: '#252525',
     width: '100%',
-    height: '35%'
+    height: '30%'
   },
   keypad: {
     flexDirection: 'row',
@@ -129,6 +154,6 @@ const textStyles = {
   },
   currencyDescription: {
     color:'white',
-    margin: 5
+    margin: 2.5
   }
 };
