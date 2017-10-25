@@ -8,6 +8,15 @@ import RoundButton from './src/components/RoundButton';
 export default class App extends React.Component {
 
 
+  constructor(props){
+
+    super(props);
+
+    //this array will hold all the buttons
+    this.buttonArray = ['1', '2', '3', '4', '5', '6', '7' , '8' , '9', '.', '0', 'DEL' ];
+
+  }
+
   /* this function handles what happens when any button is pressed
      and it has two parameters:
      text - the text that represents the button value (usually an integer)
@@ -53,10 +62,20 @@ export default class App extends React.Component {
 
         <View style={viewStyles.keypad}>
 
-          <RoundButton
-           number={'5'}
-           buttonPressed={(text, isDeleteButton) => this.buttonPressed(text, isDeleteButton)}
-           />
+          {
+            this.buttonArray.map((data, index) => {
+              return (
+                <RoundButton
+                  key={index}
+                  number={data}
+                  isDeleteButton={false}
+                  buttonPressed={(text, isDeleteButton) => this.buttonPressed(text, isDeleteButton)}
+                />
+              );
+            })
+          }
+
+
 
         </View>
 

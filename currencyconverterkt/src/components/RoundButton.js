@@ -28,7 +28,6 @@ class RoundButton extends Component {
           <View style={[viewStyles.container, this.props.marginStyling]}>
             <Text style={textStyles.numberStyle}>{this.props.number}</Text>
           </View>
-
         </TouchableHighlight>
       );
     }
@@ -58,7 +57,7 @@ const viewStyles = {
 const textStyles = {
   numberStyle: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: 'bold'
   }
 };
