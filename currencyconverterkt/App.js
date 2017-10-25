@@ -6,6 +6,7 @@ import GenericCurrencyField from './src/components/GenericCurrencyField';
 import RoundButton from './src/components/RoundButton';
 import Currency from './src/model/Currency';
 import CurrencyFactory from './src/model/CurrencyFactory';
+import ButtonPressManager from './src/model/ButtonPressManager';
 
 const buttonMargin = {horizontal: 65, vertical: 30};
 
@@ -25,10 +26,13 @@ export default class App extends React.Component {
       //let the CurrencyFactory create a currency object based on the shorthand we pass in as a parameter
       currency1: CurrencyFactory.createCurrencyWithIdentifier(Currency.currencyList.nigeria),
       currency2: CurrencyFactory.createCurrencyWithIdentifier(Currency.currencyList.britain),
-
       currency1isHighlighted: true,
-      currency2isHighlighted: false
+      currency2isHighlighted: false,
+      lastPressedButtonValue: ''
     }
+
+    this.currentlySelectedCurrency = this.state.currency1;
+    this.alternateCurrency = this.state.currency2;
 
   }
 
@@ -39,7 +43,24 @@ export default class App extends React.Component {
                       was the button pressed.
   */
   buttonPressed = (text, isDeleteButton) => {
-    console.log("The button pressed was = " + text + "       & isDeleteButton = " + isDeleteButton);
+
+    /*
+      when button is pressed we want to do 2 things (broadly speaking):
+
+      1. Depending on what currencyField is selected (get the currentlySelectedCurrency field)
+      2. Update the SELECTED currency's currentStringDisplayValue with the number that was pressed
+    */
+
+    //get the currently selected currencyField
+    let resultingStringAfterButtonPress = ButtonPressManager.numberPressed(this.currentlySelectedCurrency.currentStringDisplayValue, text, isDeleteButton, this.state.lastPressedButtonValue);
+
+    let alternateCurrencyCalculation = parseFloat(resultingStringAfterButtonPress).toFixed(2) * this.currentlySelectedCurrency.exchangeRateForAlternateCurrency(this.alternateCurrency);
+
+    this.currentlySelectedCurrency.currentStringDisplayValue = resultingStringAfterButtonPress;
+    this.alternateCurrency.currentStringDisplayValue = alternateCurrencyCalculation.toFixed(2).toString();
+
+    this.setState({ currency1: this.state.currency1, currency2: this.state.currency2, lastPressedButtonValue: text});
+
   }
 
   /* field tapped is an ES6 (javascript fat arrow function)
@@ -52,9 +73,13 @@ export default class App extends React.Component {
 
     //if the field tapped on is field one
     if(fieldIndex == FIELD_ONE){
+      this.currentlySelectedCurrency = this.state.currency1;
+      this.alternateCurrency = this.state.currency2;
       this.setState({ currency1isHighlighted: true, currency2isHighlighted: false });
     }
     else {
+      this.currentlySelectedCurrency = this.state.currency2;
+      this.alternateCurrency = this.state.currency1;
       this.setState({ currency1isHighlighted: false, currency2isHighlighted: true });
     }
 
