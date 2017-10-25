@@ -3,8 +3,22 @@ import {Text, View } from 'react-native';
 
 //importing the GenericCurrencyField custom component
 import GenericCurrencyField from './src/components/GenericCurrencyField';
+import RoundButton from './src/components/RoundButton';
 
 export default class App extends React.Component {
+
+
+  /* this function handles what happens when any button is pressed
+     and it has two parameters:
+     text - the text that represents the button value (usually an integer)
+     isDeleteButton - a boolean value that will tell us whether the delete button
+                      was the button pressed.
+  */
+  buttonPressed = (text, isDeleteButton) => {
+    console.log("The button pressed was = " + text);
+  }
+
+
   render() {
     return (
 
@@ -38,6 +52,12 @@ export default class App extends React.Component {
         </View>
 
         <View style={viewStyles.keypad}>
+
+          <RoundButton
+           number={'5'}
+           buttonPressed={(text, isDeleteButton) => this.buttonPressed(text, isDeleteButton)}
+           />
+
         </View>
 
       </View>
@@ -72,7 +92,7 @@ const viewStyles = {
   keypad: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    padding: 30,
+    padding: 25,
     width: '100%',
     height: '60%'
   },
