@@ -3,7 +3,7 @@ import {Text, View, TouchableHighlight} from 'react-native';
 
 const buttonBackgroundColor = {
   main: '#414141',
-  border: '#9B9B9B'
+  border: 'orange'
 };
 
 const buttonDimensions = {

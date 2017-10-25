@@ -138,7 +138,8 @@ const viewStyles = {
     flexWrap: 'wrap',
     padding: 25,
     width: '100%',
-    height: '60%'
+    height: '60%',
+    backgroundColor: 'lightgrey'
   },
   exchangeRateDetail: {
     flex: 1.5,
