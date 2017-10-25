@@ -17,6 +17,12 @@ export default class App extends React.Component {
     //this array will hold all the buttons
     this.buttonArray = ['1', '2', '3', '4', '5', '6', '7' , '8' , '9', '.', '0', 'DEL' ];
 
+    //initialising the state of the component
+    this.state = {
+      currency1isHighlighted: true,
+      currency2isHighlighted: false
+    }
+
   }
 
   /* this function handles what happens when any button is pressed
@@ -29,6 +35,23 @@ export default class App extends React.Component {
     console.log("The button pressed was = " + text + "       & isDeleteButton = " + isDeleteButton);
   }
 
+  /* field tapped is an ES6 (javascript fat arrow function)
+     that takes in one parameter:
+     fieldIndex - the index of the field that was tapped
+  */
+  fieldTapped = (fieldIndex) => {
+
+    let FIELD_ONE = 0;
+
+    //if the field tapped on is field one
+    if(fieldIndex == FIELD_ONE){
+      this.setState({ currency1isHighlighted: true, currency2isHighlighted: false });
+    }
+    else {
+      this.setState({ currency1isHighlighted: false, currency2isHighlighted: true });
+    }
+
+  }
 
   render() {
     return (
@@ -47,12 +70,18 @@ export default class App extends React.Component {
             currencyDescription={'NGN'}
             iconFlag={require('./src/images/nig_flag.png')}
             displayAmountNumber={0}
+            fieldIndex={0}
+            fieldTapped={(index) => this.fieldTapped(index)}
+            isHighlighted={this.state.currency1isHighlighted}
           />
 
           <GenericCurrencyField
             currencyDescription={'GBP'}
             iconFlag={require('./src/images/uk_flag.png')}
             displayAmountNumber={0}
+            fieldIndex={1}
+            fieldTapped={(index) => this.fieldTapped(index)}
+            isHighlighted={this.state.currency2isHighlighted}
           />
 
           <View style={viewStyles.exchangeRateDetail}>

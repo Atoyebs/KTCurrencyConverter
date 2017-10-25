@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 //import the following out of the box components from 'react-native' module
 import {Text, Image, TouchableHighlight, View} from 'react-native';
 
+const amountFontSize = 27;
 
 class GenericCurrencyField extends Component {
 
@@ -17,21 +18,30 @@ class GenericCurrencyField extends Component {
   //render has to be invoked if the component is to be drawn on the screen.
   render(){
 
+    let amountStyle = (this.props.isHighlighted) ? textStyles.highlightedAmountNumber : textStyles.displayAmountNumber;
+
     return (
 
-      <View style={viewStyles.container}>
+      <TouchableHighlight
+        activeOpacity={0.95}
+        underlayColor={'transparent'}
+        onPress={this.props.fieldTapped.bind(this, this.props.fieldIndex)}
+        style={viewStyles.container}
+      >
+        <View style={viewStyles.container}>
 
-        <View style={viewStyles.amountFieldArea}>
-          <Image source={this.props.iconFlag} resizeMode={'cover'} style={viewStyles.flagIcon} />
-          {/*Space around will come into effect here and push the display amount to the far right of the field*/}
-          <Text style={textStyles.displayAmountNumber}>{this.props.displayAmountNumber}</Text>
+          <View style={viewStyles.amountFieldArea}>
+            <Image source={this.props.iconFlag} resizeMode={'cover'} style={viewStyles.flagIcon} />
+            {/*Space around will come into effect here and push the display amount to the far right of the field*/}
+            <Text style={amountStyle}>{this.props.displayAmountNumber}</Text>
+          </View>
+
+          <View style={viewStyles.currencyDescriptionField}>
+            <Text style={textStyles.currencyDescriptionText}>{this.props.currencyDescription}</Text>
+          </View>
+
         </View>
-
-        <View style={viewStyles.currencyDescriptionField}>
-          <Text style={textStyles.currencyDescriptionText}>{this.props.currencyDescription}</Text>
-        </View>
-
-      </View>
+      </TouchableHighlight>
 
     );
 
@@ -47,7 +57,7 @@ const viewStyles = {
     width: '100%', //we know the field will take up the entire width of the screen
     flex: 2,
     flexDirection: 'row',
-    marginBottom: 3
+    marginBottom: 1.5
   },
   amountFieldArea: {
     backgroundColor: '#414141',
@@ -81,7 +91,11 @@ const textStyles = {
   },
   displayAmountNumber: {
     color: 'white',
-    fontSize: 27
+    fontSize: amountFontSize
+  },
+  highlightedAmountNumber: {
+    color: '#F6A523',
+    fontSize: amountFontSize
   }
 };
 

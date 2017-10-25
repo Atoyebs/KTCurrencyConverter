@@ -22,7 +22,7 @@ class RoundButton extends Component {
         <TouchableHighlight
           /*onPress refers to the function that gets executed when the TouchableHighlight is pressed*/
           onPress={this.props.buttonPressed.bind(this, this.props.number, this.props.isDeleteButton)}
-          activeOpacity={0.85}
+          activeOpacity={0.95}
           underlayColor={'transparent'}
         >
           <View style={[viewStyles.container, this.props.marginStyling]}>
